@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
-      <username>devopstraineronline@gmail.com</username>
-      <password>cmVmdGtuOjAxOjE3NzY5OTQwMjQ6WTlpVkdPZ1hNQVFXdnlnbXdNR3FpaThuT0N2</password>
+      <username>pakajayamadhuri@gmail.com</username>
+      <password>cmVmdGtuOjAxOjE3NzczNTM0NTY6ck1BeVZxOUpQN2w0UkxrTTkybm1Kbk1hbWJW</password>
       <id>central</id>
     </server>
     <server>
-      <username>devopstraineronline@gmail.com</username>
-      <password>cmVmdGtuOjAxOjE3NzY5OTQwMjQ6WTlpVkdPZ1hNQVFXdnlnbXdNR3FpaThuT0N2</password>
+      <username>pakajayamadhuri@gmail.com</username>
+      <password>cmVmdGtuOjAxOjE3NzczNTM0NTY6ck1BeVZxOUpQN2w0UkxrTTkybm1Kbk1hbWJW</password>
       <id>snapshots</id>
     </server>
   </servers>
@@ -21,14 +21,14 @@
             <enabled>false</enabled>
           </snapshots>
           <id>central</id>
-          <name>addbook-libs-release</name>
-          <url>https://preethidevopsdemo.jfrog.io/artifactory/addbook-libs-release</url>
+          <name>demo-jaya-libs-release</name>
+          <url>https://jayamadhuri.jfrog.io/artifactory/demo-jaya-libs-release</url>
         </repository>
         <repository>
           <snapshots />
           <id>snapshots</id>
-          <name>addbook-libs-snapshot</name>
-          <url>https://preethidevopsdemo.jfrog.io/artifactory/addbook-libs-snapshot</url>
+          <name>demo-jaya-libs-snapshot</name>
+          <url>https://jayamadhuri.jfrog.io/artifactory/demo-jaya-libs-snapshot</url>
         </repository>
       </repositories>
       <pluginRepositories>
@@ -37,14 +37,14 @@
             <enabled>false</enabled>
           </snapshots>
           <id>central</id>
-          <name>addbook-libs-release</name>
-          <url>https://preethidevopsdemo.jfrog.io/artifactory/addbook-libs-release</url>
+          <name>demo-jaya-libs-release</name>
+          <url>https://jayamadhuri.jfrog.io/artifactory/demo-jaya-libs-release</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
           <id>snapshots</id>
-          <name>addbook-libs-snapshot</name>
-          <url>https://preethidevopsdemo.jfrog.io/artifactory/addbook-libs-snapshot</url>
+          <name>demo-jaya-libs-snapshot</name>
+          <url>https://jayamadhuri.jfrog.io/artifactory/demo-jaya-libs-snapshot</url>
         </pluginRepository>
       </pluginRepositories>
       <id>artifactory</id>
@@ -54,3 +54,4 @@
     <activeProfile>artifactory</activeProfile>
   </activeProfiles>
 </settings>
+
