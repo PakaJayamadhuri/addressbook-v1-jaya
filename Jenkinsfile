@@ -4,7 +4,7 @@ pipeline{
     tools {
         maven "mymaven"
     }
-    
+
     parameters {
         string(name: 'Env', defaultValue: 'Test', description: 'version to deploy')
         booleanParam(name: 'executeTests', defaultValue: true, description: 'decide to run it?')
@@ -40,6 +40,11 @@ pipeline{
                     sh "mvn test"
                 }
             }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
         }
 
         stage("CodeCoverage"){
@@ -61,6 +66,13 @@ pipeline{
         }
 
         stage('PublishtoJFrog') {
+            input {
+                message "Archive the artificat"
+                ok "Platform selected"
+                parameters {
+                    choice(name: 'Platform', choices: ['Nexus', 'JFrog'])
+                }
+            }
             steps {
                 script {
                     echo "Publish to JFrog"
