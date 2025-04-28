@@ -9,7 +9,21 @@ pipeline{
     stages {
         stage('Compile') {
             steps {
-                echo "Deploying in ${params.Env} environment"
+
+                script {
+                    echo "Compiling the code"
+                    echo "Compiling in ${params.Env}"
+                    sh "mvn compile"
+                }
+            }
+        }
+
+        stage("CodeReview") {
+            steps {
+                script {
+                    echo "Code Review Using pmd plugin"
+                    sh "mvn pmd:pmd"
+                }
             }
         }
         stage('UnitTest') {
@@ -17,12 +31,37 @@ pipeline{
                 expression { params.executeTests == true }
             }
             steps {
-                echo 'Testing..'
+                script {
+                    echo "UnitTest in junit"
+                    sh "mvn test"
+                }
             }
         }
-        stage('Deploy') {
+
+        stage("CodeCoverage"){
             steps {
-                echo "Deploying version ${params.APPVERSION}"
+                script {
+                    echo "Code Coverage using jacoco"
+                    sh "mvn verify"
+                }
+            }
+        }
+
+        stage('Package') {
+            steps {
+                script {
+                    echo "Packaging the code"
+                    sh "mvn package"
+                }
+            }
+        }
+
+        stage('PublishtoJFrog') {
+            steps {
+                script {
+                    echo "Publish to JFrog"
+                    sh "mvn deploy -U -s settings.xml"
+                }
             }
         }
     }
