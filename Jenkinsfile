@@ -7,7 +7,7 @@ pipeline {
 
         string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Environment to deploy to')
 
-        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests?')
+        booleanParam(name: 'RUN_TESTS', description: 'Run tests?')
 
         choice(name: 'DEPLOY_SERVER', choices: ['dev', 'test', 'prod'], description: 'Choose deployment server')
 
