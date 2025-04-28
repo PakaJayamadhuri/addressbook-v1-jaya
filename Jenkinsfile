@@ -1,71 +1,29 @@
-pipeline {
-
+pipeline{
     agent any
 
-
     parameters {
-
-        string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Environment to deploy to')
-
-        booleanParam(name: 'RUN_TESTS', defaultValue: 'true', description: 'Run tests?')
-
-        choice(name: 'DEPLOY_SERVER', choices: ['dev', 'test', 'prod'], description: 'Choose deployment server')
-
+        string(name: 'Env', defaultValue: 'Test', description: 'version to deploy')
+        booleanParam(name: 'executeTests', defaultValue: true, description: 'decide to run it?')
+        choice(name: 'APPVERSION', choices: ['1.1', '1.2'])
     }
-
-
     stages {
-
-        stage('Dev Stage') {
-
+        stage('Compile') {
             steps {
-
-                echo "Deploying to ${params.ENVIRONMENT} environment"
-
+                echo "Deploying in ${params.Env} environment"
             }
-
         }
-
-        stage('Test Stage') {
-
-            when
-    {
-    
-                    expression { params.RUN_TESTS == true }
-    
-                }
+        stage('UnitTest') {
+            when {
+                expression { params.executeTests == true }
+            }
             steps {
-
-                echo 
-                    "Running tests in ${params.ENVIRONMENT} environment"
-
-                }
-
+                echo 'Testing..'
             }
-
         }
-
-        stage('Prod Stage') {
-
+        stage('Deploy') {
             steps {
-
-                script {
-
-                    if (params.DEPLOY_SERVER == 'prod') {
-
-                        echo "Deploying to production server"
-
-                    } else {
-
-                        echo "Deploying to ${params.DEPLOY_SERVER} server"
-
-                    }
-
-                }
-
+                echo "Deploying version ${params.APPVERSION}"
             }
-
         }
-
+    }
 }
-
