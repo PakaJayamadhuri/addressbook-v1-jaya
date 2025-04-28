@@ -7,7 +7,7 @@ pipeline {
 
         string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Environment to deploy to')
 
-        booleanParam(name: 'RUN_TESTS', description: 'Run tests?')
+        booleanParam(name: 'RUN_TESTS', defaultValue: 'true', description: 'Run tests?')
 
         choice(name: 'DEPLOY_SERVER', choices: ['dev', 'test', 'prod'], description: 'Choose deployment server')
 
@@ -20,15 +20,7 @@ pipeline {
 
             steps {
 
-                script {
-
-                    if (params.ENVIRONMENT == 'dev') {
-
-                        echo "Building for development environment"
-
-                    }
-
-                }
+                echo "Deploying to ${params.ENVIRONMENT} environment"
 
             }
 
@@ -36,19 +28,16 @@ pipeline {
 
         stage('Test Stage') {
 
+            when
+    {
+    
+                    expression { params.RUN_TESTS == true }
+    
+                }
             steps {
 
-                script {
-
-                    if (params.RUN_TESTS) {
-
-                        echo "Running tests in the ${params.ENVIRONMENT} environment"
-
-                    } else {
-
-                        echo "Skipping tests"
-
-                    }
+                echo 
+                    "Running tests in ${params.ENVIRONMENT} environment"
 
                 }
 
